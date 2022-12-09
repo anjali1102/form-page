@@ -2,13 +2,33 @@ import logo from "./logo.svg";
 import "./App.css";
 import { Iframe } from "./components/Iframe/Iframe";
 import { Form } from "./components/Form/Form";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [result, setResult] = useState(null);
+  // console.log("result", result);
+
+  useEffect(() => {
+    const handler = (event) => {
+      if (event.data.type !== "submit") return;
+      // console.log("event.data", event.data);
+      setResult(event.data);
+    };
+    window.addEventListener("message", handler);
+    return () => window.removeEventListener("message", handler);
+  }, []);
+
   return (
     <div className="App">
       <Iframe>
         <Form />
       </Iframe>
+      {result?.value?.success && (
+        <p className="success">{`Result: ${JSON.stringify(result?.value)}`}</p>
+      )}
+      {result?.value?.error && (
+        <p className="error">{`Error: ${JSON.stringify(result?.value)}`}</p>
+      )}
     </div>
   );
 }
