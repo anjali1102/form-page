@@ -1,4 +1,3 @@
-import logo from "./logo.svg";
 import "./App.css";
 import { Iframe } from "./components/Iframe/Iframe";
 import { Form } from "./components/Form/Form";
@@ -24,10 +23,16 @@ function App() {
         <Form />
       </Iframe>
       {result?.value?.success && (
-        <p className="success">{`Result: ${JSON.stringify(result?.value)}`}</p>
+        <p
+          className="success"
+          style={{ color: "green" }}
+        >{`Result: ${JSON.stringify(result?.value)}`}</p>
       )}
       {result?.value?.error && (
-        <p className="error">{`Error: ${JSON.stringify(result?.value)}`}</p>
+        <p
+          className="error"
+          style={{ color: "red" }}
+        >{`Error: ${JSON.stringify(result?.value)}`}</p>
       )}
     </div>
   );

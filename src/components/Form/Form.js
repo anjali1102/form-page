@@ -20,12 +20,10 @@ const Form = () => {
     formData,
     userSelectState,
   } = useForm(validate);
-  // console.log("formData", formData);
 
   useEffect(() => {
     const countriesData = async () => {
       const data = await fetchCountries();
-      // console.log("data", data)
       setCountryList(data);
     };
     countriesData();
@@ -39,14 +37,11 @@ const Form = () => {
     }
   }, [formData.country]);
 
-  console.log(stateList);
+  // console.log(stateList);
   const findCountry = countryList.find(
     (eachCountry) => eachCountry.name === formData.country
   );
-  console.log("findCountry", findCountry);
-
-  // console.log(findCountry);
-  // findCountry.states;
+  // console.log("findCountry", findCountry);
 
   return (
     <section className="form_wrapper">
@@ -61,7 +56,7 @@ const Form = () => {
         {inputFieldsData.map((item) => {
           const { name, type, label } = item;
           return type === "select" ? (
-            <label className="chooseCountry" htmlFor={name} key={uuidv4()}>
+            <label className="chooseCountry" htmlFor={name}>
               <div
                 className="fs-lg ml-1"
                 style={{ marginTop: "0.5rem", fontWeight: "bold" }}
@@ -85,7 +80,7 @@ const Form = () => {
                 // required
                 style={{
                   width: "100%",
-                  border: "1px solid red",
+                  border: "1px solid black",
                   padding: "8px 10px",
                   borderRadius: "4px",
                 }}
@@ -93,7 +88,7 @@ const Form = () => {
                 <option value=""></option>
                 {countryList.map((eachCountry) => {
                   return (
-                    <option key={eachCountry.capital} value={eachCountry.name}>
+                    <option key={uuidv4()} value={eachCountry.name}>
                       {eachCountry.name}
                     </option>
                   );
@@ -101,7 +96,7 @@ const Form = () => {
               </select>
             </label>
           ) : (
-            <label className="" htmlFor={name} key={uuidv4()}>
+            <label className="" htmlFor={name}>
               <div style={{ marginTop: "0.5rem", fontWeight: "bold" }}>
                 {label}
                 <BsAsterisk
@@ -111,15 +106,17 @@ const Form = () => {
               </div>
               <input
                 className="input"
-                key={name}
-                onChange={(e)=>{chooseInputHandler(e.target.value)}}
+                // key={name}
+                onChange={(e) => {
+                  chooseInputHandler(e);
+                }}
                 {...item}
                 type={type}
                 id={name}
                 // required
                 style={{
                   width: "100%",
-                  border: "1px solid red",
+                  border: "1px solid black",
                   padding: "8px 10px",
                   borderRadius: "4px",
                 }}
@@ -138,7 +135,7 @@ const Form = () => {
           </div>
           <select
             className="input"
-            key="state"
+            // key={state}
             value={formData.state ? formData.state : "Select"}
             onChange={(e) => {
               userSelectState(e.target.value);
@@ -149,24 +146,20 @@ const Form = () => {
             // required
             style={{
               width: "100%",
-              border: "1px solid red",
+              border: "1px solid black",
               padding: "8px 10px",
               borderRadius: "4px",
             }}
           >
-            {/* {findCountry
-              ? stateList.map((eachState) => {
-                  return <option key={uuidv4()}>{eachState.states}</option>;
-                })
-              : } */}
-
             {stateList.length === 0 ? (
               <>"No States here"</>
             ) : (
               <>
+                <option value=""></option>
                 {stateList.map((everyState) => {
+                  // const { code, name } = everyState;
                   return (
-                    <option key={everyState.code} value={everyState.name}>
+                    <option key={uuidv4()} value={everyState.name}>
                       {everyState?.name}
                     </option>
                   );

@@ -6,6 +6,7 @@ export const useForm = (options) => {
   const [formData, setFormData] = useState({});
   // const [states, setStates] = useState([]);
 
+  console.log("formData", formData);
   const userSelectCountry = async (countryList, countryName) => {
     const response = await fetchState(countryList, countryName);
     // console.log("response userSlectCountry", response);
@@ -18,6 +19,7 @@ export const useForm = (options) => {
   };
 
   const chooseInputHandler = (e) => {
+    // console.log(e.target);
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };

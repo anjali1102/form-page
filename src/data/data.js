@@ -24,9 +24,4 @@ export const inputFieldsData = [
     type: "select",
     label: "Country",
   },
-  // {
-  //   name: "state",
-  //   type: "select",
-  //   label: "State",
-  // },
 ];
