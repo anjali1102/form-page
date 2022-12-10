@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { inputFieldsData } from "../../data/data";
 import { fetchCountries } from "../../fetchCountries/fetchCountries";
 import { Submit } from "../Submit/Submit";
 import { BsAsterisk } from "react-icons/bs";
-import "./Form.css";
 import { validate } from "../../validators/validators";
 import { useForm } from "../../hooks/useForm";
 import { v4 as uuidv4 } from "uuid";
+import "./Form.css";
 
 const Form = () => {
   const [countryList, setCountryList] = useState([]);
@@ -47,15 +47,15 @@ const Form = () => {
         className="form-content"
         onSubmit={submitHandler}
       >
-        <h1 className="title" style={{ fontWeight: "normal" }}>
+        <h2 className="title" style={{ fontWeight: "normal" }}>
           Can you please provide your personal details?
-        </h1>
+        </h2>
         {inputFieldsData.map((item) => {
           const { name, type, label } = item;
           return type === "select" ? (
             <label className="chooseCountry" htmlFor={name}>
               <div
-                className="fs-lg ml-1"
+                
                 style={{ marginTop: "0.5rem", fontWeight: "bold" }}
               >
                 {label}
@@ -117,7 +117,7 @@ const Form = () => {
             </label>
           );
         })}
-        <label className="" htmlFor="">
+        <label className="" htmlFor="" >
           <div style={{ marginTop: "0.5rem", fontWeight: "bold" }}>
             State
             <BsAsterisk

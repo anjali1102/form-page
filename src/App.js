@@ -1,6 +1,5 @@
 import "./App.css";
-import { Iframe } from "./components/Iframe/Iframe";
-import { Form } from "./components/Form/Form";
+import { Iframe, Form } from "./components/index";
 import { useEffect, useState } from "react";
 
 function App() {
