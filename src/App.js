@@ -9,13 +9,11 @@ function App() {
   useEffect(() => {
     const handler = (event) => {
       if (event.data.type !== "submit") return;
-      // console.log("event.data", event.data);
       setResult(event.data);
     };
     window.addEventListener("message", handler);
     return () => window.removeEventListener("message", handler);
   }, []);
-  // console.log("result", result, JSON.stringify(result.value));
 
   return (
     <div className="App">

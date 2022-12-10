@@ -2,16 +2,11 @@ import React, { useState } from "react";
 import { fetchState } from "../validators/validators";
 
 export const useForm = (options) => {
-  // console.log("options", options);
   const [formData, setFormData] = useState({});
-  // const [states, setStates] = useState([]);
 
-  console.log("formData", formData);
   const userSelectCountry = async (countryList, countryName) => {
     const response = await fetchState(countryList, countryName);
-    // console.log("response userSlectCountry", response);
     setFormData({ ...formData, country: countryName });
-    // setStates(response);
   };
 
   const userSelectState = async (stateDetails) => {
@@ -19,7 +14,6 @@ export const useForm = (options) => {
   };
 
   const chooseInputHandler = (e) => {
-    // console.log(e.target);
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
@@ -27,22 +21,20 @@ export const useForm = (options) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const validations = options?.validators;
-    // console.log("validations", validations);
     if (validations) {
       let valid = true;
       const newErrors = {};
+
       for (let key in validations) {
-        // console.log("keys", key);
         const value = formData[key];
-        // console.log("value", value);
         const validation = validations[key];
 
         if (validation?.required?.value && !value) {
           valid = false;
           newErrors[key] = validation?.required?.requiredError;
         }
+
         const pattern = validation?.pattern;
-        console.log("pattern",{validation});
         if (pattern?.value && !RegExp(pattern.value).test(value)) {
           valid = false;
           newErrors[key] = pattern.patternError;
@@ -67,7 +59,6 @@ export const useForm = (options) => {
 
   return {
     formData,
-
     userSelectState,
     userSelectCountry,
     chooseInputHandler,
