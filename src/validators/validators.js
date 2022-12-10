@@ -34,12 +34,6 @@ export const validate = {
         requiredError: "Country is required",
       },
     },
-    state: {
-      required: {
-        value: true,
-        requiredError: "State is required",
-      },
-    },
     email: {
       required: {
         value: true,
@@ -48,6 +42,12 @@ export const validate = {
       pattern: {
         value: "[a-z0-9._%+-]+@[a-z0-9.-]+.[a-z]{2,4}$",
         patternError: "Enter valid email",
+      },
+    },
+    state: {
+      required: {
+        value: true,
+        requiredError: "State is required",
       },
     },
   },

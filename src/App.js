@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 
 function App() {
   const [result, setResult] = useState(null);
-  // console.log("result", result);
 
   useEffect(() => {
     const handler = (event) => {
@@ -16,6 +15,7 @@ function App() {
     window.addEventListener("message", handler);
     return () => window.removeEventListener("message", handler);
   }, []);
+  // console.log("result", result, JSON.stringify(result.value));
 
   return (
     <div className="App">
@@ -29,10 +29,9 @@ function App() {
         >{`Result: ${JSON.stringify(result?.value)}`}</p>
       )}
       {result?.value?.error && (
-        <p
-          className="error"
-          style={{ color: "red" }}
-        >{`Error: ${JSON.stringify(result?.value)}`}</p>
+        <p className="error" style={{ color: "red" }}>{`Error: ${JSON.stringify(
+          result?.value
+        )}`}</p>
       )}
     </div>
   );

@@ -27,19 +27,22 @@ export const useForm = (options) => {
   const submitHandler = (e) => {
     e.preventDefault();
     const validations = options?.validators;
+    // console.log("validations", validations);
     if (validations) {
       let valid = true;
       const newErrors = {};
       for (let key in validations) {
         // console.log("keys", key);
         const value = formData[key];
+        // console.log("value", value);
         const validation = validations[key];
 
         if (validation?.required?.value && !value) {
           valid = false;
           newErrors[key] = validation?.required?.requiredError;
         }
-        const pattern = validation?.patternError;
+        const pattern = validation?.pattern;
+        console.log("pattern",{validation});
         if (pattern?.value && !RegExp(pattern.value).test(value)) {
           valid = false;
           newErrors[key] = pattern.patternError;
