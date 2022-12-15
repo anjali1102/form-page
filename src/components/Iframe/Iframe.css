@@ -1,5 +1,30 @@
 .iframe {
   border: 1px solid red;
   height: 33.5rem;
+  width:45rem;
+  margin-left:-10rem;
   background-color: #e7e5e5;
+}
+
+/* *Desktop Screens */
+@media only screen and (max-width: 1158px) {
+  .iframe {
+    margin-left:-8rem;
+  }  
+}
+
+/* ! Tab Screens */
+@media only screen and (max-width: 900px) {
+  .iframe {
+    width:30rem;
+    margin-left:-5rem;
+  }  
+}
+
+/*? Mobile Screens */
+@media only screen and (max-width: 400px) {
+  .iframe {
+    width:15rem;
+    margin-left:1.2rem
+  }  
 }
